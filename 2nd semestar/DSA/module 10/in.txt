@@ -1,0 +1,7 @@
+STL List Built In Fuctions list:
+https://docs.google.com/document/d/1ck7jVccsfKckkS9sB1BmE2COXRDVYOCEfIRX3Tu7SHQ/edit
+এই মডিউল শেষে আমরা যা যা শিখবোঃ
+STL List সম্পর্কে জানবো
+Singly Linked List Reverse করা সম্পর্কে জানবো
+Doubly Linked List Reverse করা সম্পর্কে জানবো
+Singly Linked List এর Cycle Detect করা দেখবো
