@@ -1,0 +1,22 @@
+#include<bits/stdc++.h>
+using namespace std;
+class Student{
+    public:
+    int roll;
+    string a;
+
+    Student(int roll,string a){
+        this->roll=roll;
+        this->a=a;
+    }
+    void b(){
+        cout<<a<<" "<<roll;
+    }
+};
+int main()
+{
+    Student Rakib(26,"A+");
+    cout<<Rakib.roll<<" "<<Rakib.a;
+    Rakib.b();
+    return 0;
+}
