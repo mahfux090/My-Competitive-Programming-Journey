@@ -4,7 +4,7 @@
 
 ## 📈 Growth Milestones
 - ✅ Solved 100+ problems on Codeforces
-- 🥇 First Division 3 contest solved 5 problems!
+- 🥇 First Division 2 contest solved 4 problems!
 - 🔥 Spent 16+ hours coding in one day
 
 ## 🧠 What I’ve Learned
