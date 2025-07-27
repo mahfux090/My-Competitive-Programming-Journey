@@ -17,6 +17,12 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
         filename = problem_name.replace(" ", "_").replace(".", "") + ".cpp"
 
+        if os.path.exists(filename):
+            print(f"{filename} already exists, skipping overwrite.")
+            self.send_response(200)
+            self.end_headers()
+            return
+
         header = f"""// Author: Mahfuz Uddin
 // Problem: {problem_name}
 // URL: {url}
@@ -29,6 +35,7 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             f.write(header)
 
         os.system(f"code {filename}")
+        time.sleep(3)  # 1 second delay
 
         self.send_response(200)
         self.end_headers()
