@@ -2,37 +2,43 @@
 
 using namespace std;
 
-void s() {
+void slv() {
     int n, k, m;
     cin >> n >> k >> m;
-    string str;
-    cin >> str;
+    string s;
+    cin >> s;
 
-    int levels_found = 0;
-    set<char> current_set;
+    string hm = "";
+    set<char> st;
+    int original_n = n;
 
-    for (char ch : str) {
+    for (char ch : s) {
         if (ch - 'a' < k) {
-            current_set.insert(ch);
-            if (current_set.size() == k) {
-                levels_found++;
-                current_set.clear();
+            st.insert(ch);
+            if (st.size() == k) {
+                n--;
+                st.clear();
+                hm += ch;
             }
+        }
+        if (n == 0) {
+            break;
         }
     }
 
-    if (levels_found >= n) {
-        cout << "YES" << endl;
+    if (n > 0) {
+        cout << "NO\n";
+        char mis = 'a';
+        while (st.count(mis)) {
+            mis++;
+        }
+        hm += mis;
+        while (hm.length() < original_n) {
+            hm += 'a';
+        }
+        cout << hm << "\n";
     } else {
-        cout << "NO" << endl;
-        char missing_char = 'a';
-        while (current_set.count(missing_char)) {
-            missing_char++;
-        }
-        for (int i = 0; i < n; i++) {
-            cout << missing_char;
-        }
-        cout << endl;
+        cout << "YES\n";
     }
 }
 
@@ -42,7 +48,7 @@ int main() {
     int t;
     cin >> t;
     while (t--) {
-        s();
+        slv();
     }
+    // Solved By Mahfuz Uddin
 }
-// Solved By Mahfuz Uddin
