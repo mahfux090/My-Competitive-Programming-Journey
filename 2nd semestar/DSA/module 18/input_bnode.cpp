@@ -31,7 +31,6 @@ Node *level_order_input()
         //1st 
         Node* p=q.front();
         q.pop();
-
         //2nd
         int l,r;
         cin>>l>>r;
@@ -55,8 +54,6 @@ Node *level_order_input()
             q.push(p->right);
     }
     return root;
-    
-
 }
 void level_order(Node *root)
 {
@@ -72,10 +69,8 @@ void level_order(Node *root)
         // 1st step
         Node *f = q.front();
         q.pop();
-
         // 2nd step
         cout << f->val << " ";
-
         // 3rd step
         if (f->left)
             q.push(f->left);
