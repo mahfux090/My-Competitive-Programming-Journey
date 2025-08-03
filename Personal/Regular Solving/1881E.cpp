@@ -1,0 +1,54 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define fast ios::sync_with_stdio(false); cin.tie(0);
+#define ll long long
+#define ull unsigned long long
+#define ld long double
+#define pb push_back
+#define ff first
+#define ss second
+#define all(x) x.begin(),x.end()
+#define rall(x) x.rbegin(),x.rend()
+#define sz(x) (int)(x).size()
+#define endl '\n'
+#define pii pair<int,int>
+#define pll pair<ll,ll>
+const int INF = 1e9;
+const ll LINF = 1e18;
+const int MOD = 1e9+7;
+
+void solve()
+{
+    int n;
+    cin>>n;
+    vector<int> a(n);
+    for(int i=0; i<n; ++i) {
+        cin>>a[i];
+    }
+    vector<int> dp(n+1, 0);
+    for(int i = n - 1; i >= 0; --i) {
+        dp[i] = dp[i+1];
+        int k = a[i];
+        int next_idx = i + k + 1;
+        if (next_idx <= n) {
+            int keep_len = k+1 + dp[next_idx];
+            dp[i] = max(dp[i], keep_len);
+        }
+    }
+    cout << n -dp[0] << endl;
+}
+
+int main()
+{
+    fast
+    int t=1;
+    cin >> t;
+    while(t--)
+    {
+        solve();
+    }
+    return 0;
+}
+//------------------------------------------//
+//          Mahfuz Uddin                    //
+//------------------------------------------//
