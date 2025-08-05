@@ -34,7 +34,7 @@ void solve() {
     
     sort(all(motu));
     sort(all(tomu));
-
+    
     int p1 = motu.size()-1;
     int p2 = 0;
     int swaps=0;
