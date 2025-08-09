@@ -37,7 +37,11 @@ void precompute() {
 void solve() {
     int n,m;
     cin>>n>>m;
-    cout<<ps[m] - ps[n-1]<<lb;
+    if (n == m) {
+        cout << 0 << lb;
+        return;
+    }
+    cout<<ps[m-1] - ps[n-1]<<lb;
 }
 
 int main() {
