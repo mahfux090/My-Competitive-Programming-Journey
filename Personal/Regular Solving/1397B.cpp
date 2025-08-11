@@ -49,7 +49,7 @@ void solve() {
             }
         }
 
-        if(!possible && c > 1) { // If it's not possible for this c, larger c won't be either
+        if(!possible && c > 1) { 
              break;
         }
 
