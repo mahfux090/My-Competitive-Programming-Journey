@@ -1,19 +1,16 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 int main()
 {
     int n;
     string s;
-    cin>>n;
-    cin>>s;
-    stack<char>st;
+    cin >> n >> s;
+    stack<char> st;
     st.push(s.front());
-    for(char c:s)
-    {
-        
-        if(c!=st.top())
+    for (char c : s)
+        if (c != st.top())
             st.push(c);
-    }
-    cout<<n-st.size();;
+    cout << n - st.size();
+    ;
     return 0;
 }
