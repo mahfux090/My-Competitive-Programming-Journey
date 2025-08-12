@@ -11,6 +11,4 @@ int main()
         if (c != st.top())
             st.push(c);
     cout << n - st.size();
-    ;
-    return 0;
 }
