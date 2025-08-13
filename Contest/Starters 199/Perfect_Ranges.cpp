@@ -21,43 +21,42 @@ void solve() {
     int n;
     cin >> n;
     vector<int> a(n), b(n);
-    for(int i=0;i<n;i++) {
-        cin>>a[i];
+    vector<pii> p(n);
+    for(int i=0; i<n; i++) cin>>a[i];
+    for(int i=0; i<n; i++) cin>>b[i];
+
+    for(int i=0; i<n; i++){
+        if(a[i] > b[i]) swap(a[i], b[i]);
+        p[i] = {a[i], b[i]};
     }
-    for(int i=0;i<n;i++) {
-        cin>>b[i];
+
+    vector<vector<int>> dp(n, vector<int>(2));
+    dp[n-1][0] = 1;
+    dp[n-1][1] = 1;
+
+    for(int i = n-2; i>=0; i--){
+        // For p[i]
+        int v = p[i].ff;
+        if(p[i+1].ff > v) dp[i][0] = 1 + dp[i+1][0];
+        else if (p[i+1].ss > v) dp[i][0] = 1 + dp[i+1][1];
+        else dp[i][0] = 1;
+
+        // For q[i]
+        v = p[i].ss;
+        if(p[i+1].ff > v) dp[i][1] = 1 + dp[i+1][0];
+        else if (p[i+1].ss > v) dp[i][1] = 1 + dp[i+1][1];
+        else dp[i][1] = 1;
     }
     
     ll ans = 0;
-    for(int i=0;i<n;i++){
-        set<int> cur;
-        cur.insert(a[i]);
-        cur.insert(b[i]);
-        ans++;
-
-        for(int j=i+1; j<n; j++){
-            set<int> next_s;
-            int m_j = min(a[j], b[j]);
-            int M_j = max(a[j], b[j]);
-            
-            bool possible = false;
-            for(int val : cur){
-                if(m_j > val) {
-                    next_s.insert(m_j);
-                    possible=true;
-                }
-                if(M_j > val) {
-                    next_s.insert(M_j);
-                    possible=true;
-                }
-            }
-
-            if(!possible){
-                break;
-            }
-            cur = next_s;
-            ans++;
+    for(int i=0; i<n; i++){
+        int v = p[i].ff;
+        int len = 1;
+        if(i < n-1){
+            if(p[i+1].ff > v) len += dp[i+1][0];
+            else if(p[i+1].ss > v) len += dp[i+1][1];
         }
+        ans += len;
     }
     cout << ans << lb;
 }
