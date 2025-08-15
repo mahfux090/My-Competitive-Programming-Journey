@@ -20,24 +20,20 @@ const int MOD = 1e9+7;
 void solve() {
     int n,m;
     cin>>n>>m;
-    vector<vector<int>> a(n, vector<int>(m));
-    for (int i=0; i<n; ++i) {
-        for (int j=0; j<m; ++j) {
-            cin>>a[i][j];
-        }
-    }
-
+    
     vector<pii> cnt(n+m+1, {0, 0});
     for(int i=0; i<n; ++i) {
         for(int j=0; j<m; j++) {
+            int val;
+            cin >> val;
             int k = (i+1)+(j+1);
-            if(a[i][j]==0) cnt[k].ff++;
+            if(val==0) cnt[k].ff++;
             else cnt[k].ss++;
         }
     }
 
     int ans=0;
-    for (int k=2; k <= (n+m)/2; k++) {
+    for (int k=2; 2*k < n+m+2; k++) {
         int kp = n+m+2-k;
         int z = cnt[k].ff+cnt[kp].ff;
         int o = cnt[k].ss+cnt[kp].ss;
