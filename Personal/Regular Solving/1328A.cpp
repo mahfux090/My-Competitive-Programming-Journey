@@ -6,16 +6,10 @@ int main()
     cin >> n;
     while (n--)
     {
-        int a, b, ct = 0;
+        int a, b;
         cin >> a >> b;
-        while (true)
-        {
-            if (a % b == 0)
-                break;
-            a+=1;
-            ct++;
-        }
-        cout << ct<<endl;
+        if(a%b==0) cout<<0<<endl;
+        else cout<<b-(a%b)<<endl;
     }
     return 0;
 }
