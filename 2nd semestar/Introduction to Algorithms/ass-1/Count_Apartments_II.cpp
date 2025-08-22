@@ -63,12 +63,8 @@ int main()
         }
     }
     sort(sz.begin(),sz.end()); 
-    if(sz.size()==0)
-        cout<<0;
-    else
-    { 
-        for(int x: sz)
-            cout<<x<<" ";
-    }
+    for(int x: sz)
+        cout<<x<<" ";
+    
     return 0;
 }
