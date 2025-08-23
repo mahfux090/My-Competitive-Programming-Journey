@@ -19,17 +19,17 @@ void bfs(int si, int sj)
     while (!q.empty())
     {
         pair<int,int>prant=q.front();
-        int p_i=prant.first;
-        int p_j=prant.second;
+        int pi=prant.first;
+        int pj=prant.second;
         q.pop();
         for (int i = 0; i < 4; i++)
         {
-            int c_i=p_i+d[i].first;
-            int c_j=p_j+d[i].second;
-            if(base(c_i,c_j) && !vis[c_i][c_j] && grid[c_i][c_j]=='.')
+            int ci=pi+d[i].first;
+            int cj=pj+d[i].second;
+            if(base(ci,cj) && !vis[ci][cj] && grid[ci][cj]=='.')
             {
-                vis[c_i][c_j]=true;
-                q.push({c_i,c_j});
+                vis[ci][cj]=true;
+                q.push({ci,cj});
             }
         }
     }
