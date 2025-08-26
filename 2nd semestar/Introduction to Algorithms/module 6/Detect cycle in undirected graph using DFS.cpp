@@ -13,7 +13,7 @@ void dfs(int src)
                 cycle=true;
         if(!vis[child])
         {
-            praent[child]!=src;
+            praent[child]=src;
             dfs(child);
         }
     }
