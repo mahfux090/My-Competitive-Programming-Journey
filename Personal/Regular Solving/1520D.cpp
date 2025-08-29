@@ -1,37 +1,26 @@
-// Author: Mahfuz Uddin
-// Date: 2025-07-28 10:43
-// Language: C++
-//start From Here.....
-// Bismillah hir Rahmanir Rahim
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
-
-void solve() {
-    int n;
-    cin >> n;
-    map<int, int> m;
-    for (int i = 0; i < n; ++i) {
-        int a;
-        cin >> a;
-        m[a - i]++;
-    }
-
-    long long c = 0;
-    for (auto x : m) {
-        long long v = x.second;
-        c += v * (v - 1) / 2;
-    }
-    cout << c << '\n';
-}
-
-int main() {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-    short t;
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int t;
     cin >> t;
-    while (t--) {
-        solve();
+    while (t--)
+    {
+        int n;
+        cin >> n;
+        vector<long long> a(n);
+        for (int i = 0; i < n; i++)
+            cin >> a[i];
+        map<long long, long long> mp;
+        long long ans = 0;
+        for (int i = 0; i < n; i++)
+        {
+            long long val = a[i] - i;
+            ans += mp[val];
+            mp[val]++;
+        }
+        cout << ans << "\n";
     }
-    return 0;
 }
-// Solved By Mahfuz Uddin

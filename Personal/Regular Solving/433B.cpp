@@ -1,47 +1,30 @@
-// Author: Mahfuz Uddin
-// Date: 2025-07-28 10:46
-// Language: C++
-//start From Here.....
-// Bismillah hir Rahmanir Rahim
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
-
-int main() {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
     int n;
     cin >> n;
-
     vector<long long> v(n);
-    for (int i = 0; i < n; ++i) {
+    for (int i = 0; i < n; i++)
         cin >> v[i];
-    }
-
+    vector<long long> pre1(n + 1), pre2(n + 1);
+    for (int i = 1; i <= n; i++)
+        pre1[i] = pre1[i - 1] + v[i - 1];
     vector<long long> u = v;
     sort(u.begin(), u.end());
-
-    vector<long long> prefix_v(n + 1, 0);
-    vector<long long> prefix_u(n + 1, 0);
-
-    for (int i = 0; i < n; ++i) {
-        prefix_v[i + 1] = prefix_v[i] + v[i];
-        prefix_u[i + 1] = prefix_u[i] + u[i];
-    }
-
+    for (int i = 1; i <= n; i++)
+        pre2[i] = pre2[i - 1] + u[i - 1];
     int m;
     cin >> m;
-    while (m--) {
-        short type;
-        int l, r;
-        cin >> type >> l >> r;
-        if (type == 1) {
-            cout << prefix_v[r] - prefix_v[l - 1] << '\n';
-        } else {
-            cout << prefix_u[r] - prefix_u[l - 1] << '\n';
-        }
+    while (m--)
+    {
+        int t, l, r;
+        cin >> t >> l >> r;
+        if (t == 1)
+            cout << pre1[r] - pre1[l - 1] << "\n";
+        else
+            cout << pre2[r] - pre2[l - 1] << "\n";
     }
-
-    return 0;
 }
-// Solved By Mahfuz Uddin
