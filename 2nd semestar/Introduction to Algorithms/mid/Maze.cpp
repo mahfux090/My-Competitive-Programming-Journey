@@ -1,19 +1,16 @@
 #include <bits/stdc++.h>
 using namespace std;
-
 char grid[1005][1005];
 bool vis[1005][1005];
 pair<int, int> parent[1005][1005];
 int n, m;
 vector<pair<int, int>> d = {{0, 1}, {0, -1}, {-1, 0}, {1, 0}};
-
 bool valid(int i, int j)
 {
     if (i < 0 || i >= n || j < 0 || j >= m)
         return false;
     return true;
 }
-
 void bfs(int si, int sj)
 {
     queue<pair<int, int>> q;
@@ -37,7 +34,6 @@ void bfs(int si, int sj)
         }
     }
 }
-
 int main()
 {
     cin >> n >> m;
