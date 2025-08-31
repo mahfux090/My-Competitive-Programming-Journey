@@ -1,0 +1,12 @@
+Date : 31-08-2025
+1200 Rating Problem List
+
+1744D – Divisibility by 2ⁿ
+
+1742E – Scuza
+
+1738B – Prefix Sum Addicts
+
+1736B – Playing with GCD
+
+1734C – Removing Smallest Multiples

@@ -21,24 +21,31 @@ void solve() {
     ll n;
     int k;
     cin >> n >> k;
-    
-    ll r1 = n - (k-1);
-    if(r1>0 && r1 % 2 != 0) {
-        cout<<"YES"<<lb;
-        for(int i = 0; i<k-1; ++i) cout<<1<<" ";
-        cout << r1 << lb;
+    vector<ll> s(k);
+    for(int i = 0; i < k; ++i) cin >> s[i];
+
+    if (k == 1) {
+        cout << "Yes" << lb;
         return;
     }
-    
-    ll r2 = n - 2LL * (k - 1);
-    if (r2 > 0 && r2 % 2 == 0) {
-        cout<<"YES"<<lb;
-        for(int i = 0; i < k - 1; i++) cout<<2<<" ";
-        cout<<r2<<lb;
+
+    for (int i = k - 2; i >= 1; --i) {
+        if (s[i] - s[i - 1] > s[i + 1] - s[i]) {
+            cout << "No" << lb;
+            return;
+        }
+    }
+
+    ll m = n - k + 1;
+    ll diff = s[1] - s[0];
+    ll first_sum = s[0];
+
+    if (first_sum > m * diff) {
+        cout << "No" << lb;
         return;
     }
-    
-    cout << "NO" << lb;
+
+    cout << "Yes" << lb;
 }
 
 int main() {

@@ -18,27 +18,21 @@ const ll LINF = 1e18;
 const int MOD = 1e9+7;
 
 void solve() {
-    ll n;
-    int k;
-    cin >> n >> k;
-    
-    ll r1 = n - (k-1);
-    if(r1>0 && r1 % 2 != 0) {
-        cout<<"YES"<<lb;
-        for(int i = 0; i<k-1; ++i) cout<<1<<" ";
-        cout << r1 << lb;
-        return;
+    int n;
+    cin >> n;
+    vector<int> v(n);
+    for(int i=0; i<n; i++) cin >> v[i];
+
+    bool ok = true;
+    for(int i = 1; i < n - 1; ++i){
+        if(v[i] % __gcd(v[i-1], v[i+1]) != 0){
+            ok = false;
+            break;
+        }
     }
-    
-    ll r2 = n - 2LL * (k - 1);
-    if (r2 > 0 && r2 % 2 == 0) {
-        cout<<"YES"<<lb;
-        for(int i = 0; i < k - 1; i++) cout<<2<<" ";
-        cout<<r2<<lb;
-        return;
-    }
-    
-    cout << "NO" << lb;
+
+    if (ok) cout << "YES" << lb;
+    else cout << "NO" << lb;
 }
 
 int main() {

@@ -17,28 +17,48 @@ const int INF = 1e9;
 const ll LINF = 1e18;
 const int MOD = 1e9+7;
 
+int ct(int x){
+    int c=0;
+    while(x>0&&x%2==0){
+        c++;
+        x/=2;
+    }
+    return c;
+}
+
 void solve() {
-    ll n;
-    int k;
-    cin >> n >> k;
+    int n;
+    cin >> n;
+    int cp = 0;
+    for(int i=1; i<=n; ++i){
+        int v;
+        cin >> v;
+        cp += ct(v);
+    }
     
-    ll r1 = n - (k-1);
-    if(r1>0 && r1 % 2 != 0) {
-        cout<<"YES"<<lb;
-        for(int i = 0; i<k-1; ++i) cout<<1<<" ";
-        cout << r1 << lb;
+    vector<int> g;
+    for(int i=1; i<=n; ++i) g.pb(ct(i));
+    
+    sort(rall(g));
+    
+    if(cp >= n){
+        cout << 0 << lb;
         return;
     }
     
-    ll r2 = n - 2LL * (k - 1);
-    if (r2 > 0 && r2 % 2 == 0) {
-        cout<<"YES"<<lb;
-        for(int i = 0; i < k - 1; i++) cout<<2<<" ";
-        cout<<r2<<lb;
-        return;
+    int op=0;
+    int nd=n-cp;
+
+    for(int i=0; i<n; ++i){
+        nd -= g[i];
+        op++;
+        if(nd <= 0){
+            cout << op << lb;
+            return;
+        }
     }
     
-    cout << "NO" << lb;
+    cout << -1 << lb;
 }
 
 int main() {
