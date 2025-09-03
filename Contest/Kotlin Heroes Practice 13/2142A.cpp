@@ -19,25 +19,24 @@ const int MOD = 1e9+7;
 
 void solve() {
     int n;
-    cin>>n;
-    string s;
-    cin>>s;
-    int zc=0;
-    for(char c:s){
-        if(c=='0'){
-            zc++;
-        }
+    cin >> n;
+    vector<int> a(n);
+    for(int i=0; i<n; i++){
+        cin>>a[i];
     }
-    
-    if(zc==1){
-        cout<<"BOB"<<lb;
+    if(a[0]!=a[1] && a[0]!=a[2]){
+        cout << 1 << lb;
         return;
     }
-    
-    if(zc%2==1){
-        cout<<"ALICE"<<lb;
-    } else {
-        cout<<"BOB"<<lb;
+    if(a[1]!=a[0] && a[1]!=a[2]){
+        cout << 2 << lb;
+        return;
+    }
+    for(int i = 2; i<n; i++){
+        if(a[i]!=a[0]){
+            cout<<i+1<<lb;
+            return;
+        }
     }
 }
 
