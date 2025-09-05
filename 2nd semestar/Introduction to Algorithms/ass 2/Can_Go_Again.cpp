@@ -23,10 +23,10 @@ int main()
         cin >> a >> b >> c;
         edg.push_back(Edges(a, b, c));
     }
-    for (int i = 1; i <=n; i++)
+    for (int i = 1; i <= n; i++)
         dis[i] = LLONG_MAX;
     int src;
-    cin>>src;
+    cin >> src;
     dis[src] = 0;
     for (int i = 0; i < n - 1; i++)
     {
@@ -40,40 +40,38 @@ int main()
                 dis[b] = dis[a] + c;
         }
     }
-    bool cycle=false;
-    for(auto ed:edg)
+    bool cycle = false;
+    for (auto ed : edg)
     {
-        if(dis[ed.a]!=LLONG_MAX && dis[ed.a]+ed.c<dis[ed.b])
-            {
-                cycle=true;
-                break;
-            }
+        if (dis[ed.a] != LLONG_MAX && dis[ed.a] + ed.c < dis[ed.b])
+        {
+            cycle = true;
+            break;
+        }
     }
     int t;
-    cin>>t;
-    queue<int>q;
+    cin >> t;
+    queue<int> q;
     while (t--)
     {
         int d;
-        cin>>d;
+        cin >> d;
         q.push(d);
-        
     }
-    if(cycle)
+    if (cycle)
     {
-        cout<<"Negative Cycle Detected"<<endl;
-        return 0;    
+        cout << "Negative Cycle Detected" << endl;
+        return 0;
     }
     while (!q.empty())
     {
-        int d=q.front();
-        if(dis[d]==LLONG_MAX)
-            cout<<"Not Possible"<<endl;
+        int d = q.front();
+        if (dis[d] == LLONG_MAX)
+            cout << "Not Possible" << endl;
         else
-            cout<<dis[d]<<endl;
+            cout << dis[d] << endl;
         q.pop();
     }
-    
-    
+
     return 0;
 }
