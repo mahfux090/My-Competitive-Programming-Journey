@@ -20,29 +20,26 @@ const int MOD = 1e9+7;
 void solve() {
     int n;
     cin >> n;
-    vector<ll> v;
+    vector<ll> o;
     ll s_e = 0;
-    for (int i=0;i<n;i++) {
+    for (int i=0; i<n; ++i) {
         ll a;
         cin>>a;
-        if(a%2==0) {
-            s_e+=a;
-        } else {
-            v.pb(a);
-        }
+        if (a % 2 == 0) s_e += a;
+        else o.pb(a);
     }
-    if (v.empty()) {
+    if (o.empty()) {
         cout << 0 << lb;
         return;
     }
-    sort(rall(v));
-    ll s_o_cut = 0;
-    for (size_t i=0; i<v.size(); i++) {
-        if (i%2==0) {
-            s_o_cut += v[i];
-        }
+    sort(rall(o));
+    int k=sz(o);
+    int take=(k+1)/2;
+    ll s_o = 0;
+    for(int i = 0; i<take; ++i) {
+        s_o += o[i];
     }
-    cout << s_e + s_o_cut << lb;
+    cout << s_e + s_o << lb;
 }
 
 int main() {
