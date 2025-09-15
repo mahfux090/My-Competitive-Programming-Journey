@@ -23,9 +23,8 @@ map<int, int> val_to_idx;
 vector<vector<vector<int>>> memo;
 
 int dfs(int i, int last_a, int last_b) {
-    if (i == n) {
+    if (i == n)
         return 1;
-    }
     int la_idx = val_to_idx[last_a];
     int lb_idx = val_to_idx[last_b];
     if (memo[i][la_idx][lb_idx] != -1) {
@@ -35,7 +34,6 @@ int dfs(int i, int last_a, int last_b) {
     if (a[i] >= last_a && b[i] >= last_b) {
         ways = (ways + dfs(i + 1, a[i], b[i])) % MOD;
     }
-
     if (a[i] != b[i]) {
         if (b[i] >= last_a && a[i] >= last_b) {
             ways = (ways + dfs(i + 1, b[i], a[i])) % MOD;
@@ -48,7 +46,6 @@ int dfs(int i, int last_a, int last_b) {
     }
     return memo[i][la_idx][lb_idx] = ways;
 }
-
 
 void solve() {
     cin >> n;
@@ -66,9 +63,8 @@ void solve() {
     }
     val_to_idx.clear();
     int cur_idx = 0;
-    for (int val : all_vals) {
+    for (int val : all_vals)
         val_to_idx[val] = cur_idx++;
-    }
     memo.assign(n + 1, vector<vector<int>>(cur_idx, vector<int>(cur_idx, -1)));
     cout << dfs(0, 0, 0) << lb;
 }
