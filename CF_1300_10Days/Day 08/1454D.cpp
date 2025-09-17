@@ -18,16 +18,43 @@ const ll LINF = 1e18;
 const int MOD = 1e9+7;
 
 void solve() {
-    ll n, k, x;
-    cin >> n >> k >> x;
-    ll min_s = k * (k + 1) / 2;
-    ll max_s = k * (2 * n - k + 1) / 2;
-
-    if (x >= min_s && x <= max_s) {
-        cout << "YES" << lb;
-    } else {
-        cout << "NO" << lb;
+    ll n;
+    cin >> n;
+    map<ll, int> mp;
+    ll tmp = n;
+    for (ll i = 2; i * i <= tmp; i++) {
+        if (tmp % i == 0) {
+            while (tmp % i == 0) {
+                mp[i]++;
+                tmp /= i;
+            }
+        }
     }
+    if (tmp > 1) {
+        mp[tmp]++;
+    }
+
+    int mx_c = 0;
+    ll p = 0;
+    for (auto it : mp) {
+        if (it.ss > mx_c) {
+            mx_c = it.ss;
+            p = it.ff;
+        }
+    }
+
+    if (mx_c == 0) { 
+        cout << 1 << lb;
+        cout << n << lb;
+        return;
+    }
+
+    cout << mx_c << lb;
+    for (int i = 0; i < mx_c - 1; i++) {
+        cout << p << " ";
+        n /= p;
+    }
+    cout << n << lb;
 }
 
 int main() {

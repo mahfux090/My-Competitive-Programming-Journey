@@ -17,21 +17,34 @@ const int INF = 1e9;
 const ll LINF = 1e18;
 const int MOD = 1e9+7;
 
-void solve() {
-    ll n, k, x;
-    cin >> n >> k >> x;
-    ll min_s = k * (k + 1) / 2;
-    ll max_s = k * (2 * n - k + 1) / 2;
+unordered_set<int> st;
 
-    if (x >= min_s && x <= max_s) {
-        cout << "YES" << lb;
-    } else {
-        cout << "NO" << lb;
+void precompute(){
+    for(ll k=2; k<=1000; k++){
+        ll val=1+k+k*k;
+        ll p=k*k;
+        while(val<=1000000){
+            st.insert(val);
+            if(1000000/k < p) break;
+            p*=k;
+            val+=p;
+        }
+    }
+}
+
+void solve() {
+    int n;
+    cin>>n;
+    if(st.count(n)){
+        cout<<"YES"<<lb;
+    }else{
+        cout<<"NO"<<lb;
     }
 }
 
 int main() {
     fast
+    precompute();
     int t=1;
     cin >> t;
     while(t--) {
