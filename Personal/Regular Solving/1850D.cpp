@@ -1,8 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define fast                     \
-    ios::sync_with_stdio(false); \
-    cin.tie(0);
+#define fast ios::sync_with_stdio(false); cin.tie(0);
 #define ll long long
 #define ull unsigned long long
 #define ld long double
