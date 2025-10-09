@@ -18,10 +18,9 @@ const ll LINF = 1e18;
 const int MOD = 1e9+7;
 
 void solve() {
-    ll x,y,n;
-    cin>>x >> y >>n;
-    ll ans = n-(n-y)%x;
-    cout<<ans<<lb;
+    int n;
+    cin>>n;
+    cout << n/2 << lb;
 }
 
 int main() {

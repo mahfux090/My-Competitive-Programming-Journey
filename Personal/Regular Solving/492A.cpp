@@ -18,16 +18,29 @@ const ll LINF = 1e18;
 const int MOD = 1e9+7;
 
 void solve() {
-    ll x,y,n;
-    cin>>x >> y >>n;
-    ll ans = n-(n-y)%x;
-    cout<<ans<<lb;
+    int n;
+    cin >> n;
+    int h = 0;
+    int l = 1;
+    long long c = 0;
+    while(true){
+        c = c+l;
+        if(n>=c){
+            n -= c;
+            h++;
+            l++;
+        }
+        else{
+            break;
+        }
+    }
+    cout<<h<<lb;
 }
 
 int main() {
     fast
     int t=1;
-    cin >> t;
+    // cin >> t;
     while(t--) {
         solve();
     }

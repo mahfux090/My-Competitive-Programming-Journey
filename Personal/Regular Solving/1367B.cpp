@@ -18,10 +18,31 @@ const ll LINF = 1e18;
 const int MOD = 1e9+7;
 
 void solve() {
-    ll x,y,n;
-    cin>>x >> y >>n;
-    ll ans = n-(n-y)%x;
-    cout<<ans<<lb;
+    int n;
+    cin >> n;
+    int e_cnt=0, o_cnt = 0;
+    vector<int> a(n);
+    for(int i=0; i<n; i++) {
+        cin >> a[i];
+        if (a[i]%2 == 0) e_cnt++;
+        else o_cnt++;
+    }
+
+    int req_e = (n+1)/2;
+    int req_o = n/2;
+
+    if (e_cnt!=req_e || o_cnt!=req_o) {
+        cout << -1 << lb;
+        return;
+    }
+
+    int m = 0;
+    for (int i=0;i<n;i++) {
+        if (i%2 != a[i]%2) {
+            m++;
+        }
+    }
+    cout<<m/2<<lb;
 }
 
 int main() {
