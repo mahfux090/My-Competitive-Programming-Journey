@@ -17,69 +17,70 @@ const int INF = 1e9;
 const ll LINF = 1e18;
 const int MOD = 1e9+7;
 
+ll get_max_p(map<ll, int> c) {
+    int total_sticks = 0;
+    ll current_p = 0;
+    for(auto const& [len, num] : c) {
+        if(num > 0){
+            total_sticks += num;
+            current_p += len * num;
+        }
+    }
+    
+    if(total_sticks < 3) return 0;
+
+    vector<ll> odds;
+    for(auto const& [len, num] : c) {
+        if(num > 0 && num % 2 != 0) {
+            odds.pb(len);
+        }
+    }
+    sort(all(odds));
+
+    if(sz(odds) > 2) {
+        for(int i = 0; i < sz(odds) - 2; ++i) {
+            c[odds[i]]--;
+            current_p -= odds[i];
+        }
+    }
+    
+    total_sticks=0;
+    for(auto const& [len, num] : c) if(num>0) total_sticks+=num;
+    if(total_sticks < 3) return 0;
+
+    ll s_max = 0;
+    for(auto it = c.rbegin(); it != c.rend(); ++it) {
+        if(it->ss > 0) {
+            s_max = it->ff;
+            break;
+        }
+    }
+    
+    if(2 * s_max < current_p) {
+        return current_p;
+    }
+    
+    return 0;
+}
+
 void solve() {
     int n;
     cin >> n;
     map<ll, int> c;
-    ll p = 0;
+    ll s_max_initial = 0;
     for (int i = 0; i < n; ++i) {
         ll a;
         cin >> a;
         c[a]++;
-        p += a;
+        s_max_initial = max(s_max_initial, a);
     }
 
-    while (true) {
-        int total_sticks = 0;
-        for (auto const& [len, num] : c) {
-            if (num > 0) total_sticks += num;
-        }
-        if (total_sticks < 3) {
-            cout << 0 << lb;
-            return;
-        }
+    ll ans1 = get_max_p(c);
 
-        vector<ll> odds;
-        for (auto const& [len, num] : c) {
-            if (num > 0 && num % 2 != 0) {
-                odds.pb(len);
-            }
-        }
-        sort(all(odds));
-
-        if (sz(odds) > 2) {
-            bool removed = false;
-            for (int i = 0; i < sz(odds) - 2; ++i) {
-                c[odds[i]]--;
-                p -= odds[i];
-                removed = true;
-            }
-            if(removed) continue;
-        }
-
-        ll s_max = 0;
-        bool has_sticks = false;
-        for (auto it = c.rbegin(); it != c.rend(); ++it) {
-            if (it->second > 0) {
-                s_max = it->first;
-                has_sticks = true;
-                break;
-            }
-        }
-
-        if (!has_sticks) {
-            cout << 0 << lb;
-            return;
-        }
-
-        if (2 * s_max < p) {
-            cout << p << lb;
-            return;
-        } else {
-            c[s_max]--;
-            p -= s_max;
-        }
-    }
+    c[s_max_initial]--;
+    ll ans2 = get_max_p(c);
+    
+    cout << max(ans1, ans2) << lb;
 }
 
 int main() {
