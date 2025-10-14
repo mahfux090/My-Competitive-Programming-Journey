@@ -1,5 +1,7 @@
 #include<bits/stdc++.h>
+
 using namespace std;
+
 #define fast ios::sync_with_stdio(false); cin.tie(0);
 #define ll long long
 #define ull unsigned long long
@@ -13,14 +15,36 @@ using namespace std;
 #define lb '\n'
 #define pii pair<int,int>
 #define pll pair<ll,ll>
+
 const int INF = 1e9;
 const ll LINF = 1e18;
 const int MOD = 1e9+7;
 
 void solve() {
-    int x, y;
-    cin >> x >> y;
-    cout << min(x, y) <<" "<< max(x, y) << lb;
+    int n,q;
+    cin>>n>>q;
+    vector<ll> p(n + 1,0);
+    ll s = 0;
+    for(int i=1;i<=n;i++){
+        ll x;
+        cin>>x;
+        s+=x;
+        p[i]=p[i-1]+x;
+    }
+
+    while(q--){
+        int l, r;
+        ll k;
+        cin>>l>>r>>k;
+        ll sub_s = p[r] - p[l-1];
+        ll len = r-l+1;
+        ll new_s = s - sub_s + (len * k);
+        if(new_s % 2 != 0){
+            cout<<"YES"<<lb;
+        } else {
+            cout<<"NO"<<lb;
+        }
+    }
 }
 
 int main() {
