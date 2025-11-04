@@ -19,17 +19,25 @@ const int MOD = 1e9+7;
 
 void solve()
 {
-    ll n, m, k;
-    cin >> n >> m >> k;
-    
-    ll cap = m * (n-k-1);
-    
-    if(n > cap) {
-        cout << "NO" << lb;
+    int n;
+    cin>>n;
+    ll p=0;
+    ll r=0;
+    bool ok=true;
+    for(int i=0; i<n; ++i)
+    {
+        ll h;
+        cin>>h;
+        p+=h;
+        r+=i;
+        if(p < r)
+        {
+            ok=false;
+        }
     }
-    else {
-        cout << "YES" << lb;
-    }
+    
+    if(ok) cout<<"YES"<<lb;
+    else cout<<"NO"<<lb;
 }
 
 int main()
