@@ -17,23 +17,32 @@ const int INF = 1e9;
 const ll LINF = 1e18;
 const int MOD = 1e9+7;
 
-ll dp[1001];
-char N,K;
 void solve() {
-    cin >> N >> K;
-    
-    for(short i=0; i<=N; i++) dp[i] = LINF;
-    dp[1] = 0;
-
-    for(char u=2; u<=N; u++){
-        for(char kp=1; kp<=min((int)u, (int)K); kp++){
-            char q=u/kp;
-            char r=u%kp;
-            ll c=1+r*dp[q+1]+(kp-r)*dp[q];
-            dp[u]=min(dp[u],c);
-        }
+    short n;
+    cin >> n;
+    vector<short> a(n);
+    bool s =true;
+    for(short i=0;i<n;i++) {
+        cin >> a[i];
+        if(a[i]!=i+1) s = false;
     }
-    cout << dp[N] << lb;
+
+    if(s) {
+        cout << 0 << lb;
+        return;
+    }
+
+    if(a[0] == 1 || a[n-1] == n) {
+        cout << 1 << lb;
+        return;
+    }
+
+    if(a[0]==n && a[n-1]==1) {
+        cout << 3 << lb;
+        return;
+    }
+
+    cout << 2 << lb;
 }
 
 int main() {
