@@ -18,26 +18,20 @@ const ll LINF = 1e18;
 const int MOD = 1e9+7;
 
 void solve() {
-    short n;
-    cin >> n;
-    map<short, short> c;
-    for(short i=0;i<n;i++) {
-        short a;
-        cin >> a;
-        c[a]++;
+    ll n;
+    cin>>n;
+    if(n%2==0){
+        cout<<2<<" "<<n-3<<" "<<1<<lb;
     }
-
-    bool g = false; // g_{k+1} = Losing (false)
-    for(auto it = c.rbegin(); it != c.rend(); ++it) {
-        short cnt = it->ss;
-        // g_i = (c_i is odd) OR g_{i+1}
-        g = (cnt % 2 != 0) || g;
-    }
-
-    if(g) {
-        cout << "YES" << lb;
-    } else {
-        cout << "NO" << lb;
+    else{
+        ll k = n-1;
+        ll h = k/2;
+        if(h%2==0){
+            cout<<h-1<<" "<<h+1<<" "<<1<<lb;
+        }
+        else{
+            cout<<h-2<<" "<<h+2<<" "<<1<<lb;
+        }
     }
 }
 
