@@ -17,49 +17,48 @@ const int INF = 1e9;
 const ll LINF = 1e18;
 const int MOD = 1e9+7;
 
-bool chk(vector<int>& a, int x) {
-    int l=0, r=sz(a)-1;
-    while(l < r) {
-        if(a[l] == x) {
-            l++;
-        } else if(a[r] == x) {
-            r--;
-        } else if(a[l] != a[r]) {
-            return false;
-        } else {
-            l++;
-            r--;
-        }
+ll gcd(ll a, ll b) {
+    while (b) {
+        a %= b;
+        swap(a, b);
     }
-    return true;
+    return a;
 }
 
 void solve() {
     int n;
     cin>>n;
-    vector<int> a(n);
+    vector<ll> a(n);
     for(int i=0; i<n; i++) cin>>a[i];
+
+    ll g1 = 0, g2 = 0;
     
-    int l=0, r=n-1;
-    int v1 = -1, v2 = -1;
-    
-    while(l < r) {
-        if(a[l] != a[r]) {
-            v1 = a[l];
-            v2 = a[r];
+    for(int i=0;i<n; i+=2) g1 = gcd(g1, a[i]);
+    for(int i=1;i<n; i+=2) g2 = gcd(g2, a[i]);
+
+    bool ok1 = true;
+    for(int i=1; i<n; i+=2) {
+        if(a[i] % g1 == 0) {
+            ok1 = false;
             break;
         }
-        l++;
-        r--;
     }
     
-    if(v1 == -1) {
-        cout<<"YES"<<lb;
+    if(ok1) {
+        cout << g1 << lb;
         return;
     }
-    
-    if(chk(a, v1) || chk(a, v2)) cout<<"YES"<<lb;
-    else cout<<"NO"<<lb;
+
+    bool ok2 = true;
+    for(int i=0; i<n; i+=2) {
+        if(a[i] % g2 == 0) {
+            ok2 = false;
+            break;
+        }
+    }
+
+    if(ok2) cout << g2 << lb;
+    else cout << 0 << lb;
 }
 
 int main() {
