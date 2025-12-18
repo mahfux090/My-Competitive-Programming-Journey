@@ -17,23 +17,22 @@ const int INF = 1e9;
 const ll LINF = 1e18;
 const int MOD = 1e9+7;
 void solve(){
-int n;cin>>n;
-vector<int> a(n);
-int x;
-for(int i=0;i<n;i++){
-cin>>a[i];
-if(i==0)x=a[i];
-else x&=a[i];
+int a,b,k;cin>>a>>b>>k;
+vector<int> x(k),y(k);
+vector<int> c1(a+1,0),c2(b+1,0);
+for(int i=0;i<k;i++){
+cin>>x[i];
+c1[x[i]]++;
 }
-ll c=0;
-for(int i=0;i<n;i++)if(a[i]==x)c++;
-if(c<2){
-cout<<0<<lb;
-return;
+for(int i=0;i<k;i++){
+cin>>y[i];
+c2[y[i]]++;
 }
-ll r=(c*(c-1))%MOD;
-for(int i=1;i<=n-2;i++)r=(r*i)%MOD;
-cout<<r<<lb;
+ll s=0;
+for(int i=0;i<k;i++){
+s+=(k-c1[x[i]]-c2[y[i]]+1);
+}
+cout<<s/2<<lb;
 }
 int main(){
 fast
