@@ -2,56 +2,53 @@
 using namespace std;
 #define fast ios::sync_with_stdio(false); cin.tie(0);
 #define ll long long
-#define ull unsigned long long
-#define ld long double
-#define pb push_back
-#define ff first
-#define ss second
 #define all(x) x.begin(),x.end()
-#define rall(x) x.rbegin(),x.rend()
-#define sz(x) (int)(x).size()
+#define pb push_back
 #define lb '\n'
-#define pii pair<int,int>
-#define pll pair<ll,ll>
-const int INF = 1e9;
-const ll LINF = 1e18;
-const int MOD = 1e9+7;
 
 void solve() {
     int n;
-    cin>>n;
+    cin >> n;
     vector<ll> a(n);
-    for(int i=0;i<n;i++) cin>>a[i];
+    for(int i=0; i<n; i++) cin >> a[i];
     sort(all(a));
-    int l=0, r=n-1;
-    ll ans=0, x=0;
-    while(l<r) {
-        if(x+a[l] <= a[r]) {
-            x+=a[l];
-            ans+=a[l];
+    
+    int l = 0, r = n - 1;
+    ll ans = 0, x = 0;
+    
+    while(l < r) {
+        if(x + a[l] <= a[r]) {
+            x += a[l];
+            ans += a[l];
             l++;
         }
         else {
-            ll need = a[r]-x;
+            ll need = a[r] - x;
             a[l] -= need;
             x += need;
-            ans += need+1;
-            x = 0;
-            r--;
+            ans += need + 1; 
+            x = 0;           
+            r--;            
+            if(a[l] == 0) l++; 
         }
     }
-    ll rem = a[l];
-    if(rem<=x) ans++;
-    else {
-        ll k = (rem-x+1)/2;
-        ans += k+1;
+    
+    if(l == r) {
+        ll rem = a[l];
+        if(rem == 1) ans += 1; 
+        else if(rem <= x) ans += 1; 
+        else {
+            ll k = (rem - x + 1) / 2;
+            ans += k + 1;
+        }
     }
-    cout<<ans<<lb;
+    
+    cout << ans << lb;
 }
 
 int main() {
     fast
-    int t=1;
+    int t;
     cin >> t;
     while(t--) {
         solve();
