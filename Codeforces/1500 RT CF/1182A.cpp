@@ -31,7 +31,7 @@ void solve() {
     cout<<r<<lb;
 }
 
-int main() {aaaa
+int main() {aaaam
     fast
     int t=1;
     // cin >> t;
