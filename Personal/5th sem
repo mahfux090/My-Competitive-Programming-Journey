@@ -1,0 +1,110 @@
+//বিষম বাহু ত্রিভুজের ক্ষেত্রফল
+#include <stdio.h>
+#include <math.h>
+
+int main() {
+    float a, b, c, s, area;
+
+    printf("Enter three sides: ");
+    scanf("%f %f %f", &a, &b, &c);
+
+    if ((a + b > c) && (a + c > b) && (b + c > a)) {
+
+        s = (a + b + c) / 2;
+
+        area = sqrt(s * (s - a) * (s - b) * (s - c));
+
+        printf("Area of Scalene Triangle = %.2f", area);
+
+    } else {
+        printf("Invalid Triangle");
+    }
+
+    return 0;
+}
+
+
+// ১ থেকে ১০০ পর্যন্ত সকল বিজোড় (Odd) সংখ্যা প্রিন্ট
+
+#include <stdio.h>
+
+int main() {
+    int i;
+
+    printf("Odd numbers from 1 to 100:\n");
+
+    for(i = 1; i <= 100; i += 2) {
+        printf("%d ", i);
+    }
+
+    return 0;
+}
+
+
+//তিনটি সংখ্যার মধ্যে বৃহত্তম সংখ্যা নির্ণয়
+#include <stdio.h>
+
+int main() {
+    int a, b, c;
+
+    printf("Enter three numbers: ");
+    scanf("%d %d %d", &a, &b, &c);
+
+    if (a >= b && a >= c)
+        printf("Largest = %d", a);
+    else if (b >= a && b >= c)
+        printf("Largest = %d", b);
+    else
+        printf("Largest = %d", c);
+
+    return 0;
+}
+
+//একটি সংখ্যার Factorial নির্ণয়
+
+#include <stdio.h>
+
+int main() {
+    int n, i;
+    long long fact = 1;
+
+    printf("Enter a number: ");
+    scanf("%d", &n);
+
+    for(i = 1; i <= n; i++) {
+        fact = fact * i;
+    }
+
+    printf("Factorial = %lld", fact);
+
+    return 0;
+}
+
+//দ্বিঘাত সমীকরণের মূল (Roots) নির্ণয়
+
+#include <stdio.h>
+#include <math.h>
+
+int main() {
+    float a, b, c, d, x1, x2;
+
+    printf("Enter a, b, c: ");
+    scanf("%f %f %f", &a, &b, &c);
+
+    d = b * b - 4 * a * c;
+
+    if (d > 0) {
+        x1 = (-b + sqrt(d)) / (2 * a);
+        x2 = (-b - sqrt(d)) / (2 * a);
+        printf("Roots are: %.2f and %.2f", x1, x2);
+    }
+    else if (d == 0) {
+        x1 = -b / (2 * a);
+        printf("Equal Root = %.2f", x1);
+    }
+    else {
+        printf("Imaginary roots");
+    }
+
+    return 0;
+}
